@@ -9,24 +9,11 @@ import uk.gov.hmcts.reform.cmc.performance.simulations.checks.{CsrfCheck, Curren
 import uk.gov.hmcts.reform.cmc.performance.utils._
 
 object Eligibility {
-  
+
   val thinktime = Environment.thinkTime
 
   def run(implicit postHeaders: Map[String, String]): ChainBuilder = {
-   // val eligibilityPath = "/claim/eligibility"
-    val eligibilityPath = "/eligibility"
 
-//      exec(http("TX03_CMC_Eligibility_MakeNewClaim")
-//			.get("/claim/start")
-//			.check(regex("Make a money claim")))
-//		.pause(thinktime)
-//
-//     .exec(http("TX04_CMC_Eligibility_FindoutEligibilityPage")
-//      .get(eligibilityPath)
-//       .check(regex("Find out if you can use this service")))
-//      //.check(regex("Try the new online service")))
-//      .pause(thinktime)
-      
       exec(http("TX03_CMC_Eligibility_TotalAmountYouAreclaiming_GET")
         .get("/eligibility/claim-value")
         .check(CsrfCheck.save)
@@ -34,28 +21,17 @@ object Eligibility {
         .exitHereIfFailed
         .pause(thinktime)
 
-        
       .exec(http("TX04_CMC_Eligibility_TotalAmountYouAreclaiming_POST")
         .post("/eligibility/claim-value")
         .formParam(csrfParameter, csrfTemplate)
         .formParam("claimValue", "UNDER_10000")
         .check(CurrentPageCheck.save)
         .check(CsrfCheck.save)
-        .check(regex("Do you need help paying your court fees?")))
+        .check(regex("Is this claim against more than one person or organisation?")))
         .exitHereIfFailed
         .pause(thinktime)
-        
-      .exec(http("TX05_CMC_Eligibility_HelpWithCourtyFees")
-        .post(currentPageTemplate)
-        .formParam(csrfParameter, csrfTemplate)
-        .formParam("helpWithFees", "no")
-        .check(CurrentPageCheck.save)
-        .check(CsrfCheck.save)
-        .check(regex("Is this claim against more than one person or organisation?")))
-        .exitHereIfFailed//
-        .pause(thinktime)
 
-        .exec(http("TX06_CMC_Eligibility_SingleDefendant")
+        .exec(http("TX05_CMC_Eligibility_SingleDefendant")
           .post(currentPageTemplate)
           .formParam(csrfParameter, csrfTemplate)
           .formParam("singleDefendant", "no")
@@ -65,7 +41,7 @@ object Eligibility {
         .exitHereIfFailed
         .pause(thinktime)
 
-        .exec(http("TX07_CMC_Eligibility_DefendantAddress")
+        .exec(http("TX06_CMC_Eligibility_DefendantAddress")
           .post(currentPageTemplate)
           .formParam(csrfParameter, csrfTemplate)
           .formParam("defendantAddress", "yes")
@@ -75,9 +51,7 @@ object Eligibility {
         .exitHereIfFailed//Are you 18 or over?
         .pause(thinktime)
 
-
-
-        .exec(http("TX08_CMC_Eligibility_SingleClaimant")
+        .exec(http("TX07_CMC_Eligibility_SingleClaimant")
           .post(currentPageTemplate)
           .formParam(csrfParameter, csrfTemplate)
           .formParam("claimType", "PERSONAL_CLAIM")
@@ -87,7 +61,7 @@ object Eligibility {
         .exitHereIfFailed
         .pause(thinktime)
 
-        .exec(http("TX09_CMC_Eligibility_ClaimantAddress")
+        .exec(http("TX08_CMC_Eligibility_ClaimantAddress")
        .post(currentPageTemplate)
        .formParam(csrfParameter, csrfTemplate)
        .formParam("claimantAddress", "yes")
@@ -97,7 +71,7 @@ object Eligibility {
         .exitHereIfFailed
        .pause(thinktime)
 
-        .exec(http("TX010_CMC_Eligibility_TenancyDeposit")
+        .exec(http("TX09_CMC_Eligibility_TenancyDeposit")
           .post("/eligibility/claim-is-for-tenancy-deposit")
           .formParam(csrfParameter, csrfTemplate)
           .formParam("claimIsForTenancyDeposit", "no")
@@ -106,7 +80,7 @@ object Eligibility {
         .exitHereIfFailed
         .pause(thinktime)
 
-        .exec(http("TX011_CMC_Eligibility_GovernmentDepartment")
+        .exec(http("TX010_CMC_Eligibility_GovernmentDepartment")
           .post(currentPageTemplate)
           .formParam(csrfParameter, csrfTemplate)
           .formParam("governmentDepartment", "no")
@@ -116,8 +90,7 @@ object Eligibility {
         .exitHereIfFailed
         .pause(thinktime)
 
-
-        .exec(http("TX012_CMC_Eligibility_DefendantAge")
+        .exec(http("TX011_CMC_Eligibility_DefendantAge")
           .post(currentPageTemplate)
           .formParam(csrfParameter, csrfTemplate)
           .formParam("defendantAge", "yes")
@@ -126,15 +99,23 @@ object Eligibility {
           .check(regex("Are you 18 or over?")))
         .exitHereIfFailed//Do you believe the person you’re claiming against is 18 or over?
         .pause(thinktime)
-        
-      .exec(http("TX013_CMC_Eligibility_Over18")
+
+      .exec(http("TX012_CMC_Eligibility_Over18")
         .post(currentPageTemplate)
         .formParam(csrfParameter, csrfTemplate)
         .formParam("eighteenOrOver", "yes")
         .check(CurrentPageCheck.save)
         //.check(CsrfCheck.save)
-        .check(regex("You can use this service")))
+        .check(regex("Do you need help paying your court fees?")))
         .exitHereIfFailed//Do you believe the person you’re claiming against is 18 or over?
+        .pause(thinktime)
+
+      .exec(http("TX013_CMC_Eligibility_HelpWithCourtyFees")
+        .post(currentPageTemplate)
+        .formParam(csrfParameter, csrfTemplate)
+        .formParam("helpWithFees", "no")
+        .check(CurrentPageCheck.save)
+        .check(regex("You can use this service")))
         .pause(thinktime)
 
         //Who are you making the claim for?
@@ -149,7 +130,7 @@ object Eligibility {
         .check(CsrfCheck.save)
         .check(regex("Is this claim against more than one person or organisation?")))
         .pause(thinktime)
-        
+
       .exec(http("TX012_CMC_Eligibility_SingleDefendant")
         .post(currentPageTemplate)
         .formParam(csrfParameter, csrfTemplate)
@@ -158,7 +139,7 @@ object Eligibility {
         .check(CsrfCheck.save)
         .check(regex("Are you claiming against a government department?")))
         .pause(thinktime)
-        
+
       .exec(http("TX013_CMC_Eligibility_GovernmentDepartment")
         .post(currentPageTemplate)
         .formParam(csrfParameter, csrfTemplate)
@@ -167,7 +148,7 @@ object Eligibility {
         .check(CsrfCheck.save)
         .check(regex("Is your claim for a tenancy deposit?")))
         .pause(thinktime)
-        
+
       .exec(http("TX014_CMC_Eligibility_TenancyDeposit")
         .post("/eligibility/claim-is-for-tenancy-deposit")
         .formParam(csrfParameter, csrfTemplate)

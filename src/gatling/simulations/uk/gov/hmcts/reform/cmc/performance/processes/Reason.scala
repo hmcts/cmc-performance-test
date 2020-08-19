@@ -9,9 +9,9 @@ import uk.gov.hmcts.reform.cmc.performance.simulations.checks.{CsrfCheck, Curren
 import uk.gov.hmcts.reform.cmc.performance.utils._
 
 object Reason {
-  
+
   val thinktime = Environment.thinkTime
-  
+
   def run(implicit postHeaders: Map[String, String]): ChainBuilder = {
 
     exec(http("TX032_CMC_ClaimDetail_Reason_GET")
@@ -20,7 +20,7 @@ object Reason {
         .check(CurrentPageCheck.save)
         .check(regex("Briefly explain your claim")))
       .pause(thinktime)
-      
+
       .exec(http("TX033_CMC_ClaimDetail_Reason_POST")
         .post(currentPageTemplate)
         .formParam("_csrf", "${csrf}")
@@ -59,7 +59,7 @@ object Reason {
         .formParam("rows[2][description]", "")
         .formParam("rows[3][type]", "")
         .formParam("rows[3][description]", "")
-        .check(regex("Check and submit your claim"))
+        .check(regex("Equality and diversity questions"))
       )
       .pause(thinktime)
 

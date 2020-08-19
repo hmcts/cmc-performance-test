@@ -13,6 +13,7 @@ plugins {
 apply plugin: 'scala'
 group 'uk.gov.hmcts.reform'
 version = '1.0'
+sourceCompatibility = 11
 
 jar {
     manifest {

@@ -4,23 +4,22 @@ import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import io.gatling.http.protocol.HttpProtocolBuilder
 import uk.gov.hmcts.reform.cmc.performance.legalprocesses._
+import uk.gov.hmcts.reform.cmc.performance.utils.Environment
 //import uk.gov.hmcts.reform.cmc.performance.simulations.lifecycle.SimulationHooks
 //import uk.gov.hmcts.reform.idam.{LoginPage, User}
 
 object CreateLegalSimulation {
 //  testUsers = List(User.legal)
 
-  val baseURL: String = System.getenv("LEGAL_URL")
-
   val httpProtocol: HttpProtocolBuilder = http
-    .baseUrl(baseURL)
+    .baseUrl(Environment.cmcLegalURL)
     .inferHtmlResources(BlackList(), WhiteList())
     .acceptHeader("text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8")
     .acceptEncodingHeader("gzip, deflate, sdch, br")
     .header("Upgrade-Insecure-Requests", "1")
 
   implicit val postHeaders: Map[String, String] = Map(
-    "Origin" -> baseURL
+    "Origin" -> Environment.cmcLegalURL
   )
 
   val feeder = csv("IdamUsers.csv").circular
