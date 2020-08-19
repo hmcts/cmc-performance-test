@@ -7,7 +7,7 @@ properties([
                 string(name: 'baseURL', defaultValue: 'https://moneyclaims.aat.platform.hmcts.net', description: 'The CMC Citizen frontend URL you want to run these tests against'),
                 string(name: 'cmcLegalURL', defaultValue: 'https://moneyclaims-legal.aat.platform.hmcts.net', description: 'The CMC Legal Rep frontend URL you want to run these tests against'),
                 string(name: 'idamBaseURL', defaultValue: 'https://idam-api-idam-aat.service.core-compute-idam-aat.internal', description: 'The IDAM API Url to create and delete users from'),
-                string(name: 'paymentURL', defaultValue: 'https://www.payments.service.gov.uk', description: 'The CCD Gateway Url')
+                string(name: 'paymentURL', defaultValue: 'https://www.payments.service.gov.uk', description: 'The CCD Gateway Url'),
                 string(name: 'thinkTime', defaultValue: '5', description: 'Simulated user time taken to answer a page. (Default is set very short to provide faster feedback.)')
         ])
 ])
