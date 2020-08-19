@@ -21,7 +21,7 @@ def product = "cmc"
 def component = "claims"
 
 withNightlyPipeline("java", product, component) {
-    env.baseURL = params.baseUrl
+    env.baseURL = params.baseURL
     env.cmcLegalURL = params.cmcLegalURL
     env.idamBaseURL = params.idamBaseURL
     env.paymentURL = params.paymentURL
