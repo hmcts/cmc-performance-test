@@ -48,10 +48,6 @@ class CMCSimulation extends Simulation
            .protocols(legalhttpProtocol),
        )
          .maxDuration(3700)
-         .assertions(
-           global.responseTime.max.lt(7000),
-           forAll.failedRequests.count.lt(1)
-         )
 
 
        // FULL TEST RUNS ///////////
