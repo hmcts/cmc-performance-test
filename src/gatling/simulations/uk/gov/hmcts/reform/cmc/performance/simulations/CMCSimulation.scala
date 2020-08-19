@@ -49,7 +49,7 @@ class CMCSimulation extends Simulation
        )
          .maxDuration(3700)
          .assertions(
-           global.responseTime.max.lt(5000),
+           global.responseTime.max.lt(7000),
            forAll.failedRequests.count.lt(1)
          )
 
