@@ -42,9 +42,9 @@ class CMCSimulation extends Simulation
        // NIGHTLY TEST RUNS ///////////
 
        setUp(
-         scenario1.inject(rampUsers(1) during (200))
+         scenario1.inject(rampUsers(Environment.users) during (200))
            .protocols(httpProtocol),
-         scenario_LC.inject(rampUsers(1) during  (200))
+         scenario_LC.inject(rampUsers(Environment.users) during  (200))
            .protocols(legalhttpProtocol),
        )
          .maxDuration(3700)

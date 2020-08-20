@@ -16,7 +16,7 @@ object Environment {
   val idamBaseURL=scala.util.Properties.envOrElse("idamBaseURL", "https://idam-api.perftest.platform.hmcts.net")
  //val idamBaseURL=scala.util.Properties.envOrElse("idamBaseURL", "https://idam-api-idam-aat.service.core-compute-idam-aat.internal")
 
-  val users = scala.util.Properties.envOrElse("numberOfUser", "10")
+  val users = scala.util.Properties.envOrElse("numberOfUser", "10").toInt
   val maxResponseTime = scala.util.Properties.envOrElse("maxResponseTime", "500")
   val idamCookieName="SESSION_ID"
 
