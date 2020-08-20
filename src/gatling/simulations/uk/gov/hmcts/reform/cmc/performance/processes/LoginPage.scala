@@ -11,9 +11,9 @@ import uk.gov.hmcts.reform.cmc.performance.utils._
 object LoginPage {
 
   val thinktime = Environment.thinkTime
-  
+
     val feeder = csv("IdamUserDataPreprodEnv.csv").circular
-   
+
   //def logIn(user: User)(implicit postHeaders: Map[String, String]): ChainBuilder = {
  val logIn =   feed(feeder).exec(http("TX01_CMC_Login_LandingLoginPage")
       .get("/")
@@ -30,7 +30,7 @@ object LoginPage {
         .formParam("password", "Pass19word")
        // .formParamMap(Map("username" -> "${generatedEmail}", "password" -> "${generatedPassword}"))
         .formParam("_csrf", "${csrf}")
-        .check(regex("Find out if you can make a claim using this service")))
+        .check(regex("(Find out if you can make a claim using this service)|(Your money claims account)")))
      .exitHereIfFailed
       .pause(thinktime)
  // }

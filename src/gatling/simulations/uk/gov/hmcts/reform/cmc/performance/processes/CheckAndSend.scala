@@ -37,7 +37,7 @@ object CheckAndSend {
 				.check(css(".reference-number>h1.bold-large").saveAs("claimNumber"))*/
 				//below is the code with payments and later we need to add this code
 					.check(css("input[name='csrfToken']", "value").saveAs("_csrfTokenCardDetailPage"))
-          .check(regex("""/card_details/(.+)',""").saveAs("_csrfCardDetailPageChargeId"))
+          .check(css("input[name='chargeId']", "value").saveAs("_csrfCardDetailPageChargeId"))
           .check(regex("Enter card details"))
 			)
 			.pause(thinktime)

@@ -11,7 +11,7 @@ import uk.gov.hmcts.reform.cmc.performance.utils._
 object LegalLoginPage {
 
   val thinktime = Environment.thinkTime
-  
+
     val feeder = csv("IdamUsers.csv").circular
 
   //def legalLogIn(user: User)(implicit postHeaders: Map[String, String]): ChainBuilder = {
