@@ -26,8 +26,8 @@ object LoginPage {
       .exec(http("TX02_CMC_Login_SubmitLogin")
         .post("${currentPage}")
       //  .headers(headers_9)
-        .formParam("username", "${iaDMUserName}")  //Demo - Kapil.Jain@hmcts.net , Non Prod civilmoneyclaims+vivekcmct1@gmail.com
-        .formParam("password", "Pass19word")
+        .formParam("username", "ccd-claim2@paulnisbett.com")  //Demo - Kapil.Jain@hmcts.net , Non Prod civilmoneyclaims+vivekcmct1@gmail.com ${iaDMUserName}
+        .formParam("password", "Password12") //Pass19word
        // .formParamMap(Map("username" -> "${generatedEmail}", "password" -> "${generatedPassword}"))
         .formParam("_csrf", "${csrf}")
         .check(regex("(Find out if you can make a claim using this service)|(Your money claims account)")))

@@ -26,7 +26,7 @@ class CMCSimulation extends Simulation
        val scenario1 = scenario("Create Claim Journey")
          .exec(CreateClaimSimulation.createClaimScenario)
 
-       val scenario3 = scenario("Delete User Journey")
+       /*val scenario3 = scenario("Delete User Journey")
          .exec(CreateClaimSimulation.deleteUserScenario)
 
        val scenario2 = scenario("Defendant Journey")
@@ -36,16 +36,16 @@ class CMCSimulation extends Simulation
          .exec(CreateLegalSimulation.createLegalClaimScenario)
 
        val scenario_NLC = scenario("Legal Rep Journey Without Claims")
-         .exec(CreateLegalSimulation.createLegalNoClaimScenario)
+         .exec(CreateLegalSimulation.createLegalNoClaimScenario)*/
 
 
        // NIGHTLY TEST RUNS ///////////
 
        setUp(
          scenario1.inject(rampUsers(Environment.users) during (200))
-           .protocols(httpProtocol),
-         scenario_LC.inject(rampUsers(Environment.users) during  (200))
-           .protocols(legalhttpProtocol),
+           .protocols(httpProtocol)
+         //scenario_LC.inject(rampUsers(Environment.users) during  (200))
+           //.protocols(legalhttpProtocol),
        )
          .maxDuration(3700)
 

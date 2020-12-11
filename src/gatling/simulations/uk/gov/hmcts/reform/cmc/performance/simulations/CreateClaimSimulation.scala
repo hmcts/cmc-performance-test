@@ -52,13 +52,13 @@ object  CreateClaimSimulation {
         //LoginPage.deleteUser
       )
 
-  def deleteUserScenario =
+  //def deleteUserScenario =
 
   // createUsers
-    exec(
+    //exec(
 
-      LoginPage.deleteUser
-    )
+      //LoginPage.deleteUser
+    //)
 
 
   //pace(WaitForNextIteration)
