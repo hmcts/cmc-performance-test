@@ -56,7 +56,7 @@ dependencyManagement {
         }
 
         // CVE-2019-16869 - brought in by qpid-jms-client
-        dependencySet(group: 'io.netty', version: '4.1.51.Final') {
+        dependencySet(group: 'io.netty', version: '4.1.59.Final') {
             entry 'netty-buffer'
             entry 'netty-codec'
             entry 'netty-codec-dns'
