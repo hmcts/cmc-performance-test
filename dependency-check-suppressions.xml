@@ -39,4 +39,9 @@
         <cve>CVE-2021-21295</cve>
         <cve>CVE-2021-21409</cve>
     </suppress>
+    <suppress>
+        <notes>Low confidence issue: fast-uuid-0.1.jar</notes>
+        <filePath regex="true">.*\bfast-uuid-0\.1\.jar</filePath>
+        <cve>CVE-2020-23921</cve>
+    </suppress>
 </suppressions>
