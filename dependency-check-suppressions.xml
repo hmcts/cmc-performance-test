@@ -44,4 +44,10 @@
         <filePath regex="true">.*\bfast-uuid-0\.1\.jar</filePath>
         <cve>CVE-2020-23921</cve>
     </suppress>
+    <suppress>
+        <notes>Netty upgrade ssl issue: netty:4.1.59:*</notes>
+        <cve>CVE-2020-13956</cve>
+        <cve>CVE-2021-21295</cve>
+        <cve>CVE-2021-21409</cve>
+    </suppress>
 </suppressions>
