@@ -26,6 +26,10 @@ dependencyCheck {
     // range of 0-10 fails the build, anything greater and it doesn't fail the build
     failBuildOnCVSS = System.getProperty('dependencyCheck.failBuild') == 'true' ? 5 : 11
     suppressionFile = 'dependency-check-suppressions.xml'
+    analyzers {
+        // Disable scanning of .NET related binaries
+        assemblyEnabled = false
+    }
 }
 
 repositories {
@@ -79,9 +83,9 @@ dependencyManagement {
 dependencies {
     compile 'org.scala-lang:scala-library:2.12.12'
     gatlingCompile 'com.warrenstrange:googleauth:1.5.0'
-    compile group: 'io.gatling', name: 'gatling-app', version: '3.6.0'
-    compile group: 'io.gatling', name: 'gatling-recorder', version: '3.6.0'
-    compile group: 'io.gatling.highcharts', name: 'gatling-charts-highcharts', version: '3.6.0'
+    compile group: 'io.gatling', name: 'gatling-app', version: '3.3.1'
+    compile group: 'io.gatling', name: 'gatling-recorder', version: '3.3.1'
+    compile group: 'io.gatling.highcharts', name: 'gatling-charts-highcharts', version: '3.3.1'
 }
 
 gatling {
