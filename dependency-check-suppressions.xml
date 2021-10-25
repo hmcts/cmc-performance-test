@@ -54,5 +54,7 @@
     <suppress>
         <notes>redisclient_2.12-3.10.jar</notes>
         <cve>CVE-2021-32626</cve>
+        <cve>CVE-2021-37136</cve>
+        <cve>CVE-2021-37137</cve>
     </suppress>
 </suppressions>
