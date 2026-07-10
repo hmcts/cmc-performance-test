@@ -85,7 +85,7 @@ dependencies {
     gatlingCompile 'com.warrenstrange:googleauth:1.5.0'
     compile group: 'io.gatling', name: 'gatling-app', version: '3.3.1'
     compile group: 'io.gatling', name: 'gatling-recorder', version: '3.3.1'
-    compile group: 'io.gatling.highcharts', name: 'gatling-charts-highcharts', version: '3.3.1'
+    compile group: 'io.gatling.highcharts', name: 'gatling-charts-highcharts', version: '3.15.1'
 }
 
 gatling {
