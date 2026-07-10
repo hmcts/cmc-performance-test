@@ -38,7 +38,7 @@ repositories {
 
 dependencyManagement {
     dependencies {
-        dependency group: 'io.pebbletemplates', name: 'pebble', version: '3.1.4'
+        dependency group: 'io.pebbletemplates', name: 'pebble', version: '3.2.4'
 
         dependencySet(group: 'org.apache.logging.log4j', version: '2.13.3') {
             entry 'log4j-api'
