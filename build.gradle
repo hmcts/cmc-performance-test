@@ -46,7 +46,7 @@ dependencyManagement {
             entry 'log4j-to-slf4j'
         }
 
-        dependencySet(group: 'org.scala-lang', version: '2.12.12') {
+        dependencySet(group: 'org.scala-lang', version: '2.13.18') {
             entry 'scala-compiler'
             entry 'scala-library'
             entry 'scala-reflect'
