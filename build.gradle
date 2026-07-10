@@ -81,7 +81,7 @@ dependencyManagement {
 }
 
 dependencies {
-    compile 'org.scala-lang:scala-library:2.12.12'
+    compile 'org.scala-lang:scala-library:2.13.18'
     gatlingCompile 'com.warrenstrange:googleauth:1.5.0'
     compile group: 'io.gatling', name: 'gatling-app', version: '3.3.1'
     compile group: 'io.gatling', name: 'gatling-recorder', version: '3.3.1'
